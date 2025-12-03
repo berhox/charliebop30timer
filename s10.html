@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season 10: The Wolves of Jondique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mc-green: #56ae57;
+            --mc-dark-green: #376e37;
+            --mc-dirt: #8b5f36;
+            --mc-stone: #757575;
+            --mc-obsidian: #121016;
+            --mc-text: #f0f0f0;
+            --accent: #a335ee; /* Season 10 Purple */
+            
+            /* Faction Colors */
+            --beezian: #FFD700; /* Gold */
+            --arundel: #2E8B57; /* Darker Green (Syndicate) */
+            --carrara: #b0b0b0; /* Iron/Grey */
+            --berhox: #d13838;  /* Crimson Red (Talent) */
+            --kurai: #9b59b6;   /* Purple (Lazy) */
+            --bopian: #20B2AA;  /* Light Sea Green/Teal (Slow) */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: var(--mc-text);
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
+                url('https://media.discordapp.net/attachments/1385469518742290595/1445392505561419930/2025-12-02_22.33.34.png?ex=6930d6eb&is=692f856b&hm=a227d0a45548826339d2e3a9ee5d13f01f7eb8dadd01d644d8d13e27b336acf3&=&format=webp&quality=lossless&width=2242&height=1262'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .mc-font {
+            font-family: 'VT323', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 3px solid var(--mc-obsidian);
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: var(--mc-green);
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .nav-btn {
+            background: var(--mc-obsidian);
+            color: white;
+            border: 2px solid var(--mc-stone);
+            padding: 10px 20px;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: var(--mc-stone);
+            transform: scale(1.05);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 150px 20px 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 0px #000;
+            line-height: 0.9;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .hero-sub {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            background: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .ip-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .cta-btn {
+            background: #3c8527;
+            border: 3px solid #1e4d13;
+            box-shadow: inset 0 4px 0 rgba(255,255,255,0.2), 0 6px 0 #0e2908;
+            color: white;
+            font-size: 1.8rem;
+            padding: 20px 50px;
+            font-family: 'VT323', monospace;
+            cursor: pointer;
+            transition: transform 0.1s;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+
+        .cta-btn:active {
+            transform: translateY(6px);
+            box-shadow: inset 0 4px 0 rgba(0,0,0,0.2), 0 0px 0 #0e2908;
+        }
+
+        #copy-msg {
+            display: none;
+            margin-top: 15px;
+            color: var(--mc-green);
+            font-family: 'VT323', monospace;
+            font-size: 1.4rem;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        /* --- General Section Styles --- */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            text-shadow: 3px 3px 0 #000;
+        }
+
+        /* --- Faction Row Layout --- */
+        .faction-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            background: rgba(18, 16, 22, 0.7);
+            border: 3px solid var(--mc-obsidian);
+            padding: 30px;
+            box-shadow: 
+                inset 2px 2px 0px rgba(255,255,255,0.1),
+                inset -2px -2px 0px rgba(0,0,0,0.5),
+                4px 4px 0px rgba(0,0,0,0.5);
+        }
+
+        .faction-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .faction-img-container {
+            flex: 1;
+            height: 300px;
+            border: 4px solid var(--mc-stone);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .faction-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .faction-row:hover .faction-img {
+            transform: scale(1.1);
+        }
+
+        .faction-info {
+            flex: 1.5;
+        }
+
+        .faction-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .faction-desc {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #ccc;
+        }
+
+        /* --- Info & Console Warning --- */
+        .info-box {
+            background: rgba(0,0,0,0.8);
+            border: 3px solid var(--mc-dirt);
+            padding: 40px;
+            text-align: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .console-warning {
+            background: repeating-linear-gradient(
+                45deg,
+                #2b2b2b,
+                #2b2b2b 10px,
+                #222 10px,
+                #222 20px
+            );
+            border: 2px solid #8B0000;
+            color: #ff6b6b;
+            padding: 20px;
+            margin-top: 40px;
+            font-family: 'VT323', monospace;
+            text-align: center;
+            transform: rotate(-1deg);
+        }
+
+        .owner-tag {
+            color: #FFAA00;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #0a0a0a;
+            margin-top: 50px;
+            border-top: 5px solid var(--mc-dark-green);
+        }
+
+        .discord-btn {
+            background: #5865F2;
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-family: 'VT323', monospace;
+            font-size: 1.8rem;
+            border-radius: 4px;
+            border: 3px solid #4752c4;
+            display: inline-block;
+            margin-top: 30px;
+            transition: 0.3s;
+            box-shadow: 0 4px 0 #2f3785;
+        }
+
+        .discord-btn:hover {
+            background: #4752c4;
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #2f3785;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero h2 { font-size: 2rem; }
+            header { padding: 15px 20px; }
+            .logo { font-size: 1.5rem; }
+            
+            .faction-row, .faction-row.reverse {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .faction-img-container {
+                width: 100%;
+                height: 250px;
+            }
+            .faction-title { font-size: 2.2rem; text-align: center;}
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo mc-font">S10: JONDIQUE</div>
+        <nav style="display: flex; gap: 15px;">
+            <a href="[URL_TO_CHARLIEBOP_TIMER_PAGE]" target="_blank" class="nav-btn">CHRONOMETER</a>
+            <a href="[URL_TO_WOJD_WATCH_PAGE]" target="_blank" class="nav-btn">WATCH WOJD</a>
+            <a href="https://discord.gg/RVMDcWhdhV" target="_blank" class="nav-btn">JOIN DISCORD</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>THE WOLVES OF JONDIQUE</h1>
+        <h2 class="mc-font">SEASON 10 IS HERE</h2>
+        
+        <div class="hero-sub">
+            <p>The ancient treaty has shattered. The factions of old—and the ancients themselves—are now battling for the future of Minecraftia. Choose your side in this True Survival Vanilla experience.</p>
+        </div>
+        
+        <div class="ip-container">
+            <button class="cta-btn" onclick="copyIP()">
+                51.161.137.151:25591<br><span style="font-size: 0.7em; opacity: 0.9;">(TAP TO COPY IP)</span>
+            </button>
+            <div id="copy-msg">IP COPIED! READY TO JOIN.</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-header mc-font">CHOOSE YOUR ALLEGIANCE</h2>
+
+        <div class="faction-row">
+            <div class="faction-img-container" style="border-color: var(--beezian);">
+                <img src="https://media.discordapp.net/attachments/1262729877233336435/1405571329570377850/image.jpg?ex=6930fd8f&is=692fac0f&hm=1108984d271116bddbc6339f3578bf65070f8738ada49fd34ece018841ec128c&=&format=webp" alt="Beezian Golden Temple" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--beezian);">THE BEEZIANS (The Ancients)</h3>
+                <p class="faction-desc">
+                    The oldest and most powerful entities in Jondique. They trace their lineage back to the creation of the server itself. While other factions squabble over land, the Beezians hold knowledge of the "Before Times." Their bases are monuments to excess and power, often paved in gold blocks. They are the closest kin to the owner, Rybeez, and view the current war as mere entertainment.
+                </p>
+            </div>
+        </div>
+
+        <div class="faction-row reverse">
+            <div class="faction-img-container" style="border-color: var(--arundel);">
+                <img src="https://media.discordapp.net/attachments/1262729877233336435/1309541645384945754/image.png?ex=69310072&is=692faef2&hm=92213183f167b7db2591021d09f53d2c5fd1f3aea9185f2cc84793e94c4b898c&=&format=webp&quality=lossless" alt="Arundel Forest" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--arundel);">ARUNDEL (DARRWEN'S DOMAIN)</h3>
+                <p class="faction-desc">
+                    Arundel was once the picture of suburban perfection, known for its pristine lawns and elegant builds. That dream is dead. **Darrwen**, a ruthless gang warlord, arrived and seized the territory. Now, the manicured lawns hide a dark secret. Arundel has become the capital of the black market—a **drug and weapon empire** where illicit potions are brewed in hidden basements and illegal enchantments are forged in backyards. It is a beautiful facade covering a rot of crime.
+                </p>
+            </div>
+        </div>
+
+        <div class="faction-row">
+            <div class="faction-img-container" style="border-color: var(--carrara);">
+                <img src="https://media.discordapp.net/attachments/1385469077379743806/1443950756653957140/Screenshot_2024-12-14_194018.png?ex=6930de2f&is=692f8caf&hm=27d9626b74f6a0009a8ccb2e9190464857097363ada78fc10c7ca4db3fce3f65&=&format=webp&quality=lossless" alt="Carrara Fortress" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--carrara);">CARRARA (The Iron Enclave)</h3>
+                <p class="faction-desc">
+                    A sprawling industrial complex of stone and iron. They are the undisputed masters of trade, redstone machinery, and enchanting. In Carrara, everything has a price, and loyalty is bought with diamonds. They view Arundel as dangerous competition and the **Hoxians as overrated**.
+                </p>
+            </div>
+        </div>
+
+        <div class="faction-row reverse">
+            <div class="faction-img-container" style="border-color: var(--bopian);">
+                <img src="https://media.discordapp.net/attachments/1262729877233336435/1405478030213906442/IMG_6135.jpg?ex=6930a6aa&is=692f552a&hm=2a1badd07c2f9f548233c45840a0d0e49c96c840465799be4d76282d49ad532f&=&format=webp&width=1024&height=1366" alt="Bopian Cozy Build" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--bopian);">THE BOPIANS (The Slow Hands)</h3>
+                <p class="faction-desc">
+                    The most peaceful faction, but perhaps the most frustrating. The Bopians are legendary for their builds, but they move at a glacial pace. A Bopian might take three months to finish a roof, but that roof will be the most beautiful thing you have ever seen. They generally stay out of the war, preferring to sit in boats and stare at blocks for hours.
+                </p>
+            </div>
+        </div>
+
+        <div class="faction-row">
+            <div class="faction-img-container" style="border-color: var(--berhox);">
+                <img src="https://media.discordapp.net/attachments/1385469077379743806/1443949784254648332/cold_asl.jpg?ex=6930dd47&is=692f8bc7&hm=7524a72b63dbe491c24d533c6eebdcea55d3c1ae2b190bd74f890c8c5f772357&=&format=webp&width=768&height=1365" alt="Hoxian Strategy Room" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--berhox);">HOXIANS (THE WINNER'S ARCANA)</h3>
+                <p class="faction-desc">
+                    The **Hoxians** are the undisputed masters of non-combative excellence. They are the server's **second most powerful** collective, achieving dominance not through PVP, but through sheer talent and ability in architecture, Redstone engineering, and economic strategy. Their leader, **Berhox**, is known across Jondique simply as "**The Winner**"—a title earned through a series of tactical victories and unknown maneuvers that always leave his enemies utterly defeated.
+                </p>
+            </div>
+        </div>
+
+        <div class="faction-row reverse">
+            <div class="faction-img-container" style="border-color: var(--kurai);">
+                <img src="https://media.discordapp.net/attachments/1262729877233336435/1384892283278725161/ChatGPT_Image_May_20_2025_09_23_34_PM.png?ex=6930e832&is=692f96b2&hm=cc70c10c58760f627e5adc49d94d92e750dc43421932a2e023f8f3024472a493&=&format=webp&quality=lossless&width=910&height=1366" alt="Kurai in a Cozy Base" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--kurai);">KURAIANS (THE BEDRIDDEN DIPLOMATS)</h3>
+                <p class="faction-desc">
+                    The **Kuraians** have fully embraced sloth and are undeniably the laziest faction on the server. They operate from deep, comfortable bases only to avoid the hassle of the surface. Their leader, **Kurai**, is a cat obsessed with maximizing comfort, demanding a steady supply of frappes and large fries. Their entire strategic contribution relies solely on their powerful, yet exhausted, ally **Dxvo**, who grudgingly carries the entire faction's weight.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section">
+        <div class="info-box">
+            <h2 class="mc-font" style="font-size: 3rem; margin-bottom: 30px; color: var(--mc-green)">SERVER INTEL</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
+                <div>
+                    <h3 class="mc-font" style="color: #aaa;">SERVER OWNER</h3>
+                    <p class="owner-tag">Rybeez</p>
+                </div>
+                <div>
+                    <h3 class="mc-font" style="color: #aaa;">GAMEPLAY</h3>
+                    <p style="font-size: 1.2rem;">Vanilla Survival<br>No Land Claims<br>PVP Enabled</p>
+                </div>
+                 <div>
+                    <h3 class="mc-font" style="color: #aaa;">CROSSPLAY</h3>
+                    <p style="font-size: 1.2rem;">Java & Bedrock<br>(See Note Below)</p>
+                </div>
+            </div>
+
+            <div class="console-warning">
+                ⚠️ <strong>DISCLAIMER FOR CONSOLE PLAYERS:</strong><br>
+                While the server technically supports Bedrock/Console connections via Geyser, 
+                please note that console players are considered the "Subhuman" tier of Jondique society. 
+                You are welcome to join, but expect to be treated as the bottom of the food chain. 
+                Good luck, peasants.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="mc-font" style="font-size: 2.5rem;">THE WOLVES ARE HOWLING</h2>
+        <a href="https://discord.gg/RVMDcWhdhV" class="discord-btn">ENTER THE DISCORD</a>
+        <br><br><br>
+        <p style="font-size: 0.9rem; color: #555; font-family: monospace;">Season 10: The Wolves of Jondique &copy; 2024-2025.</p>
+    </footer>
+
+    <script>
+        function copyIP() {
+            const ip = "51.161.137.151:25591";
+            navigator.clipboard.writeText(ip).then(() => {
+                const msg = document.getElementById("copy-msg");
+                const btn = document.querySelector(".cta-btn");
+                msg.style.display = "block";
+                btn.style.borderColor = "var(--mc-green)";
+                setTimeout(() => {
+                    msg.style.display = "none";
+                    btn.style.borderColor = "#1e4d13";
+                }, 3000);
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.section').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

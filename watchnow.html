@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Room | The Wolves of Jondique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'jondique-yellow': '#FFC800', 
+                        'jondique-dark': '#1a1a1a',
+                        'school-maroon': '#6d1826',
+                        'paper': '#f8f5f2',
+                        'tape': '#e5e7eb',
+                    },
+                    fontFamily: {
+                        'headline': ['Anton', 'sans-serif'],
+                        'marker': ['Permanent Marker', 'cursive'],
+                        'body': ['Poppins', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'hard': '6px 6px 0px 0px rgba(0,0,0,1)',
+                        'soft': '4px 4px 10px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for the Playlist */
+        .playlist-scroll::-webkit-scrollbar {
+            width: 12px;
+        }
+        .playlist-scroll::-webkit-scrollbar-track {
+            background: #f8f5f2;
+            border-left: 2px solid black;
+        }
+        .playlist-scroll::-webkit-scrollbar-thumb {
+            background: #FFC800;
+            border: 2px solid black;
+        }
+        
+        /* Tape Effect */
+        .tape-top {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 120px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-left: 1px dashed rgba(0,0,0,0.1);
+            border-right: 1px dashed rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 20;
+        }
+    </style>
+</head>
+<body class="bg-paper text-jondique-dark font-body min-h-screen flex flex-col">
+
+    <nav class="bg-jondique-yellow border-b-4 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="bg-black text-jondique-yellow font-headline text-3xl px-2 py-1 transform -rotate-2 group-hover:rotate-0 transition-transform">
+                        WOJ
+                    </div>
+                    <span class="font-headline text-2xl tracking-wide uppercase hidden md:block group-hover:underline decoration-4">Home</span>
+                </a>
+            </div>
+            <div class="bg-black text-white font-headline px-4 py-1 transform rotate-1">
+                NOW WATCHING: SEASON 2
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-8 gap-8 grid grid-cols-1 lg:grid-cols-3">
+
+        <div class="lg:col-span-2 flex flex-col gap-6">
+            
+            <div class="relative bg-black border-4 border-black shadow-hard group">
+                <div class="tape-top"></div>
+
+                <div class="aspect-video bg-zinc-900 relative flex items-center justify-center overflow-hidden">
+                    <img src="image_395790.jpg" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-20 transition-opacity duration-500" alt="Episode Thumbnail">
+                    
+                    <button class="relative z-10 bg-jondique-yellow text-black rounded-full p-6 shadow-hard hover:scale-110 hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                        <i data-lucide="play" class="w-12 h-12 fill-black"></i>
+                    </button>
+
+                    <div class="absolute bottom-4 left-4 text-white z-10">
+                        <div class="bg-school-maroon inline-block px-2 py-1 font-headline text-sm mb-1">UP NEXT</div>
+                        <h2 class="font-headline text-4xl text-shadow-md">S2 E12: TOBY'S TOWER</h2>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-800 p-3 flex items-center gap-4 text-white">
+                    <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+                    <div class="flex-grow h-2 bg-zinc-600 rounded-full relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-1/3 bg-jondique-yellow rounded-full"></div>
+                    </div>
+                    <span class="font-mono text-xs">14:20 / 22:00</span>
+                    <i data-lucide="maximize" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <div class="bg-white border-2 border-black p-6 shadow-hard relative">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h1 class="font-headline text-5xl mb-2 uppercase">Toby's Tower</h1>
+                        <div class="flex gap-3 mb-4">
+                            <span class="bg-school-maroon text-white px-2 py-1 font-bold text-xs uppercase">Climax</span>
+                            <span class="bg-black text-white px-2 py-1 font-bold text-xs uppercase">Drama</span>
+                            <span class="bg-gray-200 text-black border border-black px-2 py-1 font-bold text-xs uppercase">IMDB: 9.1</span>
+                        </div>
+                    </div>
+                    <button class="text-gray-400 hover:text-school-maroon">
+                        <i data-lucide="share-2" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <p class="text-lg leading-relaxed border-l-4 border-jondique-yellow pl-4">
+                    Toby faces a major emotional turning point as he ascends the clock tower. The mystery of Charlie's condition intersects with Massimo's silence. This is the moment the Pack changes forever.
+                </p>
+                
+                <div class="mt-6 pt-6 border-t-2 border-dashed border-gray-300">
+                    <span class="font-marker text-gray-500 mr-2">Starring:</span>
+                    <div class="inline-flex -space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-gray-300 border border-white"></div>
+                        <div class="w-8 h-8 rounded-full bg-gray-400 border border-white"></div>
+                        <div class="w-8 h-8 rounded-full bg-gray-500 border border-white"></div>
+                    </div>
+                    <span class="text-sm font-bold ml-2">+ Massimo (Cameo)</span>
+                </div>
+            </div>
+
+            <div class="bg-white border-2 border-black p-6 shadow-hard mt-4">
+                <h3 class="font-headline text-2xl mb-6 border-b-2 border-black pb-2">Class Discussion (3)</h3>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-jondique-yellow border-2 border-black flex items-center justify-center font-headline">JB</div>
+                        <div>
+                            <div class="flex items-baseline gap-2">
+                                <span class="font-bold">JavoBot</span>
+                                <span class="text-xs text-gray-500">2 hours ago</span>
+                            </div>
+                            <p class="text-sm bg-gray-100 p-2 rounded-br-xl rounded-tr-xl mt-1">
+                                Bro I swear Massimo blinked in the background at 12:04. Check the tapes.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-school-maroon text-white border-2 border-black flex items-center justify-center font-headline">RR</div>
+                        <div>
+                            <div class="flex items-baseline gap-2">
+                                <span class="font-bold">RainbowRigga1</span>
+                                <span class="text-xs text-gray-500">5 hours ago</span>
+                            </div>
+                            <p class="text-sm bg-gray-100 p-2 rounded-br-xl rounded-tr-xl mt-1">
+                                Wolves are cringe. Wait until Season 3. 🌈
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="lg:col-span-1">
+            
+            <div class="flex flex-wrap gap-1 mb-0 pl-2">
+                <button class="bg-gray-200 hover:bg-gray-300 border-t-2 border-l-2 border-r-2 border-black px-3 py-1 font-headline text-sm text-gray-500">S1</button>
+                <button class="bg-jondique-yellow border-t-2 border-l-2 border-r-2 border-black px-4 py-2 font-headline text-lg relative top-[2px] z-10">SEASON 2</button>
+                <button class="bg-gray-200 hover:bg-gray-300 border-t-2 border-l-2 border-r-2 border-black px-3 py-1 font-headline text-sm text-gray-500">S3</button>
+                <button class="bg-gray-200 hover:bg-gray-300 border-t-2 border-l-2 border-r-2 border-black px-3 py-1 font-headline text-sm text-gray-500">S4</button>
+            </div>
+
+            <div class="bg-white border-2 border-black h-[600px] flex flex-col shadow-hard relative z-0">
+                <div class="bg-black text-white p-3 font-headline text-center tracking-widest uppercase">
+                    Year 8 Archives
+                </div>
+                
+                <div class="overflow-y-auto flex-grow p-2 playlist-scroll space-y-2">
+                    
+                    <div class="p-3 border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all cursor-pointer group">
+                        <div class="flex gap-3">
+                            <div class="text-2xl font-headline text-gray-300 group-hover:text-school-maroon">01</div>
+                            <div>
+                                <h4 class="font-bold text-sm uppercase group-hover:underline">8.4</h4>
+                                <p class="text-xs text-gray-500">Return to school. Tone setter.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all cursor-pointer group">
+                        <div class="flex gap-3">
+                            <div class="text-2xl font-headline text-gray-300 group-hover:text-school-maroon">02</div>
+                            <div>
+                                <h4 class="font-bold text-sm uppercase group-hover:underline">Beneath the Surface</h4>
+                                <p class="text-xs text-gray-500">Charlie's health issues emerge.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all cursor-pointer group">
+                        <div class="flex gap-3">
+                            <div class="text-2xl font-headline text-gray-300 group-hover:text-school-maroon">03</div>
+                            <div>
+                                <h4 class="font-bold text-sm uppercase group-hover:underline">Uncharted Waters</h4>
+                                <p class="text-xs text-gray-500">Toby investigates.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="p-3 border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all cursor-pointer group">
+                        <div class="flex gap-3">
+                            <div class="text-2xl font-headline text-gray-300 group-hover:text-school-maroon">06</div>
+                            <div>
+                                <h4 class="font-bold text-sm uppercase group-hover:underline">Maya's Party</h4>
+                                <p class="text-xs text-gray-500">Hugh Langham debut.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="p-3 border-2 border-black bg-jondique-yellow cursor-pointer relative">
+                        <div class="absolute right-2 top-2 text-xs font-bold bg-black text-white px-1">PLAYING</div>
+                        <div class="flex gap-3">
+                            <div class="text-2xl font-headline text-black">08</div>
+                            <div>
+                                <h4 class="font-bold text-sm uppercase">Charlie's Laptop</h4>
+                                <p class="text-xs text-black/70">Symbolic relief.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all cursor-pointer group">
+                        <div class="flex gap-3">
+                            <div class="text-2xl font-headline text-gray-300 group-hover:text-school-maroon">10</div>
+                            <div>
+                                <h4 class="font-bold text-sm uppercase group-hover:underline">WhatsApp Halloween</h4>
+                                <p class="text-xs text-gray-500">Spooky holiday events.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all cursor-pointer group">
+                        <div class="flex gap-3">
+                            <div class="text-2xl font-headline text-gray-300 group-hover:text-school-maroon">12</div>
+                            <div>
+                                <h4 class="font-bold text-sm uppercase group-hover:underline">Toby's Tower</h4>
+                                <p class="text-xs text-gray-500">Season Finale.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="p-4 border-t-2 border-black bg-gray-50">
+                    <button class="w-full bg-black text-white font-headline py-2 hover:bg-school-maroon transition-colors flex justify-center gap-2">
+                        <i data-lucide="download" class="w-5 h-5"></i> DOWNLOAD SEASON
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-school-maroon p-4 border-2 border-black shadow-hard text-center text-white transform rotate-1">
+                <h4 class="font-headline text-2xl text-jondique-yellow">MERCH DROP</h4>
+                <p class="text-sm mb-4">Get your official "Wolves" Hoodie before they vanish.</p>
+                <button class="bg-white text-black font-bold px-4 py-1 text-sm hover:bg-jondique-yellow transition-colors border border-black">SHOP NOW</button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-black text-white py-8 border-t-4 border-jondique-yellow mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-headline text-xl text-gray-400 uppercase">Wolves of Jondique Streaming</p>
+            <p class="text-xs text-gray-600 font-mono mt-2">SERVER: JONDIQUE_HS_LOCAL_01 // PING: 24ms</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
