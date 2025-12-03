@@ -199,7 +199,7 @@
         // --- CONFIGURATION ---
         // NOTE: Date is (Year, MonthIndex, Day, Hour, Minute, Second). MonthIndex is 0-11.
         // The date here corresponds to November 14th, 2025, 8:00 PM (20:00).
-        const startDate = new Date(2025, 10, 14, 20, 0, 0).getTime(); 
+        const startDate = new Date(2025, 10, 14, 20, 0, 0).getTime(); 
         
         const excuses = [
             "Realized the foundation is off by one block.",
@@ -281,11 +281,15 @@
             }
         }
 
-        // --- INITIALIZATION ---
-        setInterval(updateTimer, 1000);
-        updateTimer();
-        setInterval(cycleExcuse, 4000);
-        cycleExcuse();
+        // --- ROBUST INITIALIZATION ---
+        // Wait for the entire page structure to be fully loaded before running JS
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(updateTimer, 1000);
+            updateTimer(); // Run immediately
+            setInterval(cycleExcuse, 4000);
+            cycleExcuse(); // Run immediately
+        });
     </script>
 </body>
 </html>
+
