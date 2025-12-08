@@ -25,6 +25,9 @@
             --kurai: #9b59b6;   /* Purple (Lazy) */
             --bopian: #20B2AA;  /* Light Sea Green/Teal (Slow) */
             --bibtopian: #ff4500; /* Fiery OrangeRed */
+            
+            /* Assembly Blue */
+            --un-blue: #4169E1;
         }
 
         * {
@@ -40,7 +43,7 @@
             /* Standard Overworld Background */
             background-image: 
                 linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
-                url('https://media.discordapp.net/attachments/1385469518742290595/1445392505561419930/2025-12-02_22.33.34.png?ex=6930d6eb&is=692f856b&hm=a227d0a45548826339d2e3a9ee5d13f01f7eb8dadd01d644d8d13e27b336acf3&=&format=webp&quality=lossless&width=2242&height=1262'); 
+                url('https://i.postimg.cc/VYVNNNpB/2025-11-30-00-20-31.webp'); 
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -54,7 +57,7 @@
             background-image: 
                 linear-gradient(rgba(100, 0, 0, 0.9), rgba(40, 0, 0, 0.95)), /* Stronger Red tint */
                 /* Nether Background Image Placeholder */
-                url('https://pa1.aminoapps.com/6030/329f67689e28e85748b69ecfc39022ca8a1885e0_hq.gif');
+                url('https://images.unsplash.com/photo-1598496089917-2166416250c5?q=80&w=2070&auto=format&fit=crop');
         }
 
         h1, h2, h3, .mc-font {
@@ -139,8 +142,13 @@
         .ip-container {
             position: relative;
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Space between IP button and Assembly Button */
         }
 
+        /* IP BUTTON */
         .cta-btn {
             background: #3c8527;
             border: 3px solid #1e4d13;
@@ -152,6 +160,8 @@
             cursor: pointer;
             transition: transform 0.1s;
             text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
         }
 
         .cta-btn:active {
@@ -159,9 +169,35 @@
             box-shadow: inset 0 4px 0 rgba(0,0,0,0.2), 0 0px 0 #0e2908;
         }
 
+        /* ASSEMBLY BUTTON (New) */
+        .assembly-hero-btn {
+            background: var(--un-blue);
+            border: 3px solid #1c3a8a;
+            box-shadow: inset 0 4px 0 rgba(255,255,255,0.2), 0 6px 0 #0f2255;
+            color: white;
+            font-size: 1.5rem;
+            padding: 15px 40px;
+            font-family: 'VT323', monospace;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.1s;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .assembly-hero-btn:hover {
+            background: #5379ea;
+        }
+
+        .assembly-hero-btn:active {
+            transform: translateY(6px);
+            box-shadow: inset 0 4px 0 rgba(0,0,0,0.2), 0 0px 0 #0f2255;
+        }
+
         #copy-msg {
             display: none;
-            margin-top: 15px;
+            margin-top: 10px;
             color: var(--mc-green);
             font-family: 'VT323', monospace;
             font-size: 1.4rem;
@@ -354,8 +390,8 @@
     <header>
         <div class="logo mc-font">S10: JONDIQUE</div>
         <nav style="display: flex; gap: 15px;">
-            <a href="charliebop30timer" target="_blank" class="nav-btn">CHRONOMETER</a>
-            <a href="watchnow" target="_blank" class="nav-btn">WATCH WOJD</a>
+            <a href="https://berhox.github.io/WOJDS10/charliebop30timer" target="_blank" class="nav-btn">CHRONOMETER</a>
+            <a href="[URL_TO_WOJD_WATCH_PAGE]" target="_blank" class="nav-btn">WATCH WOJD</a>
             <a href="https://discord.gg/RVMDcWhdhV" target="_blank" class="nav-btn">JOIN DISCORD</a>
         </nav>
     </header>
@@ -373,6 +409,10 @@
                 51.161.137.151:25591<br><span style="font-size: 0.7em; opacity: 0.9;">(TAP TO COPY IP)</span>
             </button>
             <div id="copy-msg">IP COPIED! READY TO JOIN.</div>
+
+            <a href="assembly.html" class="assembly-hero-btn">
+                🏛️ ENTER THE ASSEMBLY
+            </a>
         </div>
     </section>
 
@@ -381,7 +421,7 @@
 
         <div class="faction-row">
             <div class="faction-img-container" style="border-color: var(--beezian);">
-                <img src="https://media.discordapp.net/attachments/1262729877233336435/1405571329570377850/image.jpg?ex=6930fd8f&is=692fac0f&hm=1108984d271116bddbc6339f3578bf65070f8738ada49fd34ece018841ec128c&=&format=webp" alt="Beezian Golden Temple" class="faction-img">
+                <img src="https://i.postimg.cc/CKNHjq8M/20211008-135438.jpg" alt="Beezian Golden Temple" class="faction-img">
             </div>
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--beezian);">THE BEEZIANS (The Ancients)</h3>
@@ -393,7 +433,7 @@
 
         <div class="faction-row reverse">
             <div class="faction-img-container" style="border-color: var(--arundel);">
-                <img src="https://media.discordapp.net/attachments/1262729877233336435/1309541645384945754/image.png?ex=69310072&is=692faef2&hm=92213183f167b7db2591021d09f53d2c5fd1f3aea9185f2cc84793e94c4b898c&=&format=webp&quality=lossless" alt="Arundel Forest" class="faction-img">
+                <img src="https://i.postimg.cc/k4PGX1Gn/Screenshot_2025_10_17_013328.png" alt="Arundel Forest" class="faction-img">
             </div>
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--arundel);">ARUNDEL (DARRWEN'S DOMAIN)</h3>
@@ -405,7 +445,7 @@
 
         <div class="faction-row">
             <div class="faction-img-container" style="border-color: var(--carrara);">
-                <img src="https://media.discordapp.net/attachments/1385469077379743806/1443950756653957140/Screenshot_2024-12-14_194018.png?ex=6930de2f&is=692f8caf&hm=27d9626b74f6a0009a8ccb2e9190464857097363ada78fc10c7ca4db3fce3f65&=&format=webp&quality=lossless" alt="Carrara Fortress" class="faction-img">
+                <img src="https://i.postimg.cc/Vs3GsXB9/IMG-0806.png" alt="Carrara Fortress" class="faction-img">
             </div>
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--carrara);">CARRARA (The Iron Enclave)</h3>
@@ -417,7 +457,7 @@
 
         <div class="faction-row reverse">
             <div class="faction-img-container" style="border-color: var(--bopian);">
-                <img src="https://media.discordapp.net/attachments/1262729877233336435/1405478030213906442/IMG_6135.jpg?ex=6930a6aa&is=692f552a&hm=2a1badd07c2f9f548233c45840a0d0e49c96c840465799be4d76282d49ad532f&=&format=webp&width=1024&height=1366" alt="Bopian Cozy Build" class="faction-img">
+                <img src="https://media.discordapp.net/attachments/1385469077379743806/1443960758365978724/blip.gif?ex=693827c0&is=6936d640&hm=94a8ad1b9104320bbda1f3a27615b5ed1da61129f0695c4e69548a8459f86343&=" alt="Bopian Cozy Build" class="faction-img">
             </div>
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--bopian);">THE BOPIANS (The Slow Hands)</h3>
@@ -429,7 +469,7 @@
 
         <div class="faction-row">
             <div class="faction-img-container" style="border-color: var(--hoxian);">
-                <img src="https://media.discordapp.net/attachments/1385469077379743806/1443949784254648332/cold_asl.jpg?ex=6930dd47&is=692f8bc7&hm=7524a72b63dbe491c24d533c6eebdcea55d3c1ae2b190bd74f890c8c5f772357&=&format=webp&width=768&height=1365" alt="Hoxian Strategy Room" class="faction-img">
+                <img src="https://i.postimg.cc/QtZCx4CN/Screenshot_2025_10_20_233734.png" alt="Hoxian Strategy Room" class="faction-img">
             </div>
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--hoxian);">HOXIANS (THE WINNER'S ARCANA)</h3>
@@ -441,12 +481,24 @@
 
         <div class="faction-row reverse">
             <div class="faction-img-container" style="border-color: var(--kurai);">
-                <img src="https://media.discordapp.net/attachments/1262729877233336435/1384892283278725161/ChatGPT_Image_May_20_2025_09_23_34_PM.png?ex=6930e832&is=692f96b2&hm=cc70c10c58760f627e5adc49d94d92e750dc43421932a2e023f8f3024472a493&=&format=webp&quality=lossless&width=910&height=1366" alt="Kurai in a Cozy Base" class="faction-img">
+                <img src="https://i.postimg.cc/Y9B0qn0B/Screenshot_2025_09_08_043422.png" alt="Kurai in a Cozy Base" class="faction-img">
             </div>
             <div class="faction-info">
                 <h3 class="faction-title mc-font" style="color: var(--kurai);">KURAIANS (THE BEDRIDDEN DIPLOMATS)</h3>
                 <p class="faction-desc">
                     The <strong>Kuraians</strong> have fully embraced sloth and are undeniably the laziest faction on the server. They operate from deep, comfortable bases only to avoid the hassle of the surface. Their leader, <strong>Kurai</strong>, is a cat obsessed with maximizing comfort, demanding a steady supply of frappes and large fries. Their entire strategic contribution relies solely on their powerful, yet exhausted, ally <strong>Dxvo</strong>, who grudgingly carries the entire faction's weight.
+                </p>
+            </div>
+        </div>
+
+        <div class="faction-row" id="bibtopian-section">
+            <div class="faction-img-container bibtopian-border">
+                <img src="https://i.postimg.cc/pdxJhZmb/ESDX4358.jpg" alt="Bibbo in the Nether" class="faction-img">
+            </div>
+            <div class="faction-info">
+                <h3 class="faction-title mc-font" style="color: var(--bibtopian);">THE BIBTOPIANS (The Grief Lords)</h3>
+                <p class="faction-desc">
+                    Led by the infamous <strong>Bibbo</strong>, the most aggressive PVPer on the server, this faction exists solely to cause chaos. They are griefers, raiders, and agents of pure destruction. They don't want territory; they want your tears. If you see flint and steel, Bibbo is near. They are widely considered "the worst," a title they wear with pride as they burn the world down around them.
                 </p>
             </div>
         </div>
@@ -528,5 +580,3 @@
     </script>
 </body>
 </html>
-
-
