@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jondique Strategic Command</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mc-text: #f0f0f0;
+            --terminal-green: #4af626; /* Old school radar green */
+            --terminal-bg: #0a0a0a;
+            --mc-obsidian: #121016;
+            --un-blue: #4169E1;
+            
+            /* Faction Colors for Legend */
+            --arundel: #2E8B57; 
+            --carrara: #b0b0b0; 
+            --berhox: #d13838;
+            --bibbo: #ff4500;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--terminal-bg);
+            color: var(--mc-text);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrolling, map takes full screen */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mc-font { font-family: 'VT323', monospace; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- Header (Simplified) --- */
+        header {
+            background: var(--mc-obsidian);
+            border-bottom: 3px solid #333;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .logo { font-size: 1.8rem; color: var(--mc-text); text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+        .nav-btn {
+            background: #222; color: #aaa; border: 1px solid #555;
+            padding: 5px 15px; font-family: 'VT323', monospace; font-size: 1.1rem;
+            text-decoration: none; margin-left: 10px;
+        }
+        .nav-btn:hover { background: #444; color: white; }
+
+        /* --- Main Layout --- */
+        .war-room-container {
+            display: flex;
+            flex: 1; /* Fills remaining height */
+            position: relative;
+        }
+
+        /* --- The Map Iframe --- */
+        .map-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+            filter: contrast(1.1) saturate(0.9); /* Slight gritty filter */
+        }
+
+        /* --- Overlay Effects --- */
+        .scanlines {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0,0,0,0),
+                rgba(0,0,0,0) 2px,
+                rgba(0,0,0,0.1) 3px
+            );
+            pointer-events: none; /* Let clicks pass through to map */
+            z-index: 10;
+        }
+
+        .live-indicator {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 15px;
+            border: 1px solid var(--terminal-green);
+            color: var(--terminal-green);
+            font-family: 'VT323'; font-size: 1.5rem;
+            z-index: 20;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        /* --- Sidebar Legend --- */
+        .sidebar {
+            width: 300px;
+            background: rgba(10, 10, 10, 0.95);
+            border-left: 3px solid #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 30;
+            backdrop-filter: blur(5px);
+        }
+
+        .panel-header {
+            color: #888; border-bottom: 1px solid #444; padding-bottom: 5px; margin-bottom: 15px;
+            font-size: 0.9rem; letter-spacing: 1px;
+        }
+
+        .territory-item {
+            margin-bottom: 15px;
+            display: flex; align-items: center;
+        }
+        
+        .color-dot {
+            width: 15px; height: 15px; border-radius: 50%; margin-right: 10px;
+            box-shadow: 0 0 5px currentColor;
+        }
+
+        .t-name { font-size: 1.2rem; display: block; font-weight: bold; }
+        .t-desc { font-size: 0.8rem; color: #888; font-family: monospace; }
+
+        .console-note {
+            margin-top: auto; /* Push to bottom */
+            border: 1px dashed #d13838;
+            padding: 10px;
+            color: #d13838;
+            font-family: 'VT323';
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* Mobile Hide Sidebar */
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo mc-font">WAR ROOM // SATELLITE FEED</div>
+        <nav>
+            <a href="index.html" class="nav-btn">EXIT TO SURFACE</a>
+        </nav>
+    </header>
+
+    <div class="war-room-container">
+        
+        <div class="scanlines"></div>
+        <div class="live-indicator">● LIVE UPLINK ACTIVE</div>
+
+        <iframe class="map-frame" src="http://51.161.137.151:8144/"></iframe>
+
+        <div class="sidebar">
+            <h2 class="mc-font" style="font-size: 2rem; margin-bottom: 20px;">TERRITORY KEY</h2>
+
+            <div class="panel-header">KNOWN FACTION ZONES</div>
+
+            <div class="territory-item">
+                <div class="color-dot" style="background-color: var(--arundel); color: var(--arundel);"></div>
+                <div>
+                    <span class="t-name mc-font" style="color: var(--arundel);">ARUNDEL EMPIRE</span>
+                    <span class="t-desc">Suburbs, Farms, Black Market. High Security.</span>
+                </div>
+            </div>
+
+            <div class="territory-item">
+                <div class="color-dot" style="background-color: var(--carrara); color: var(--carrara);"></div>
+                <div>
+                    <span class="t-name mc-font" style="color: var(--carrara);">CARRARA TRADE FED</span>
+                    <span class="t-desc">Industrial District. Concrete & Stone.</span>
+                </div>
+            </div>
+
+            <div class="territory-item">
+                <div class="color-dot" style="background-color: var(--berhox); color: var(--berhox);"></div>
+                <div>
+                    <span class="t-name mc-font" style="color: var(--berhox);">BERHOXIAN FRONTIER</span>
+                    <span class="t-desc">Nomadic Camps. Disputed Borders.</span>
+                </div>
+            </div>
+
+            <div class="territory-item">
+                <div class="color-dot" style="background-color: var(--bibbo); color: var(--bibbo);"></div>
+                <div>
+                    <span class="t-name mc-font" style="color: var(--bibbo);">GRIEF ZONES</span>
+                    <span class="t-desc">Warning: TNT Craters & Lava Casts. (Bibbo's Area)</span>
+                </div>
+            </div>
+
+            <div class="panel-header">MAP CONTROLS</div>
+            <p style="font-size: 0.9rem; color: #ccc; line-height: 1.5;">
+                <strong style="color: white;">Left Click:</strong> Pan Camera<br>
+                <strong style="color: white;">Right Click:</strong> Rotate<br>
+                <strong style="color: white;">Scroll:</strong> Zoom Level<br>
+            </p>
+
+            <div class="console-note">
+                ⚠ WARNING FOR CONSOLE USERS:<br>
+                This satellite feed requires a GPU. Your device may explode. Proceed with caution.
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
