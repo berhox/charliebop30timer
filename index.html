@@ -79,30 +79,48 @@
             width: 100%;
         }
 
-        /* NEWS TICKER STYLES */
-        .news-ticker-wrap {
-            width: 100%;
-            background: #111;
-            border-top: 1px solid #333;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 5px 0;
-        }
+        /* --- ZOLLIE NEWS TICKER BRANDING --- */
+        /* --- ZOLLIE NEWS TICKER BRANDING --- */
+.news-ticker-wrap {
+    width: 100%;
+    background: #002b5c; /* Zollie Deep Blue */
+    border-top: 2px solid #cc0000; /* Red Accent */
+    border-bottom: 2px solid #cc0000;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
 
-        .news-ticker-content {
-            display: inline-block;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            color: #ffff55; /* Minecraft Chat Yellow */
-            padding-left: 100%; /* Start off-screen */
-            /* UPDATED: Slowed down to 120s */
-            animation: ticker-scroll 120s linear infinite;
-        }
+.zollie-label {
+    background: #cc0000; /* Red */
+    color: #ffffff; /* White */
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'VT323', monospace;
+    font-weight: bold;
+    font-size: 1.4rem;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 5px 0 10px rgba(0,0,0,0.5);
+}
 
-        @keyframes ticker-scroll {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
+.news-ticker-content {
+    display: inline-block;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: #ffffff; /* White Text */
+    padding-left: 100%;
+    animation: ticker-scroll 160s linear infinite; /* Adjusted speed for readability */
+}
+
+@keyframes ticker-scroll {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-200%, 0, 0); }
+}
 
         .logo { font-size: 2rem; color: var(--mc-green); text-shadow: 2px 2px 0px #000; }
 
@@ -257,6 +275,7 @@
         </div>
         
         <div class="news-ticker-wrap">
+            <div class="zollie-label">ZOLLIE NEWS</div>
             <div class="news-ticker-content">
 				Tensions rise between console and pc players as construction begins on Bopland and the Raivo outskirts. +++
 	            Mysterious floating island appears off the coast of Italy: Experts speculate on the future of the realm. +++
@@ -435,7 +454,6 @@
 
     <footer>
         <h2 class="mc-font" style="font-size: 2.5rem;">THE WOLVES ARE HOWLING</h2>
-        <a href="court.html" class="nav-btn" style="color: #d13838; border-color: #d13838;">SUPREME COURT</a>        <br><br><br>
         <p style="font-size: 0.9rem; color: #555; font-family: monospace;">Season 10: The Wolves of Jondique &copy; 2024-2025.</p>
     </footer>
 
